@@ -16,7 +16,7 @@ const Cart = () => {
 
   return (
     <div className='bg-black/20 backdrop-blur-lg h-screen fixed inset-0 z-50'>
-      <div className={`px-4 py-4 flex opacity-0 flex-col justify-between rounded-lg shadow-2xl transform transition-transform duration-500 ease-in-out backdrop-blur-lg bg-white/80 fixed top-16 right-0 xl:right-[12vw] w-full sm:w-[400px] h-[75vh] z-40 ${cartOpen ? 'opacity-100' : ''}`}>
+      <div className={`px-4 py-4 flex opacity-0 flex-col justify-between rounded-lg shadow-2xl transform transition-transform duration-500 ease-in-out backdrop-blur-lg bg-white/80 fixed top-8 right-0 xl:right-[12vw] w-full sm:w-[400px] h-[75vh] z-40 ${cartOpen ? 'opacity-100' : ''}`}>
       <RxCross2 onClick={() => {
         setCartOpen(!cartOpen)
       }} className='size-6 absolute right-2 top-2 bg-red-600 text-white rounded-full' />
@@ -28,7 +28,7 @@ const Cart = () => {
             cart.map((book, idx) => {
               return (
                 <div key={idx} className='flex flex-col justify-between'>
-                  <div className={`mt-0 p-1.5 flex items-center justify-between ${idx % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
+                  <div className={`mt-0 p-2.5 flex items-center justify-between ${idx % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                     <div className='flex items-center gap-3'>
                       <img src={book.image} className='w-16 h-18 rounded object-cover'></img>
                       <div className='-mt-1'>

@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router'; // unchanged
 import { IoStar } from "react-icons/io5"; // unchanged
 import { motion } from 'framer-motion'
-/* ---------- Small, dependency-free counter ---------- */
+import { fadeIn, Zoom } from '../motion/motion';
+
+
 const CountUp = ({
   end,
   duration = 3500,           // ms
@@ -53,103 +55,128 @@ const Banner = () => {
   return (
     <div className="bg-[#09122C]">
       <div className=''>
-        <motion.div
-      className="flex flex-col items-center justify-center relative min-h-[91vh] bg-cover bg-center overflow-hidden"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1649860771747-ee7be7afa585?q=80&w=1269&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
-    >
+        <div
+          className="flex flex-col items-center justify-center relative min-h-[91vh] bg-cover bg-center overflow-hidden"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1649860771747-ee7be7afa585?q=80&w=1269&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        >
 
-      {/* Overlay (slightly darker for legibility) */}
-      <div className="pointer-events-none absolute inset-0 bg-black/75"></div>
+          {/* Overlay (slightly darker for legibility) */}
+          <div className="pointer-events-none absolute inset-0 bg-black/75"></div>
 
-      {/* Soft animated radial highlights */}
-      <div
-        className="pointer-events-none absolute -inset-20 opacity-75 animate-slow-pan"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 40%),' +
-            'radial-gradient(circle at 80% 0%, rgba(255,255,255,0.10), transparent 35%),' +
-            'radial-gradient(circle at 50% 100%, rgba(255,255,255,0.08), transparent 40%)',
-        }}
-      />
+          {/* Soft animated radial highlights */}
+          <div
+            className="pointer-events-none absolute -inset-20 opacity-75 animate-slow-pan"
+            style={{
+              backgroundImage:
+                'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 40%),' +
+                'radial-gradient(circle at 80% 0%, rgba(255,255,255,0.10), transparent 35%),' +
+                'radial-gradient(circle at 50% 100%, rgba(255,255,255,0.08), transparent 40%)',
+            }}
+          />
 
-      {/* Floating blurred blobs */}
-      <div className="pointer-events-none absolute -top-12 -left-12 w-64 h-64 rounded-full bg-fuchsia-500/20 blur-3xl animate-float-slow" />
-      <div className="pointer-events-none absolute top-1/3 -right-10 w-72 h-72 rounded-full bg-emerald-400/20 blur-3xl animate-float-slower" />
-      <div className="pointer-events-none absolute bottom-0 left-1/3 w-80 h-80 rounded-full bg-cyan-400/10 blur-3xl animate-float-fast" />
+          {/* Floating blurred blobs */}
+          <div className="pointer-events-none absolute -top-12 -left-12 w-64 h-64 rounded-full bg-fuchsia-500/20 blur-3xl animate-float-slow" />
+          <div className="pointer-events-none absolute top-1/3 -right-10 w-72 h-72 rounded-full bg-emerald-400/20 blur-3xl animate-float-slower" />
+          <div className="pointer-events-none absolute bottom-0 left-1/3 w-80 h-80 rounded-full bg-cyan-400/10 blur-3xl animate-float-fast" />
 
-      {/* ===== Content ===== */}
-      <div className="relative z-10 text-white">
-        <h2 className='font-lugrasimo text-4xl sm:text-5xl lg:text-6xl text-center font-bold px-2'>Exclusive Bangla Stories</h2>
-        <p className="text-center px-2 tracking-wide mt-6 max-w-5xl mx-auto text-[16px] sm:text-lg md:text-xl leading-relaxed text-white/90">
-          <span className='font-marko-one font-bold'>E-boimela</span> — Your gateway to the finest Bangla eBooks. Explore over 10,000 titles anytime, anywhere. Make every moment better with a book by your side.
-        </p>
+          {/* ===== Content ===== */}
+          <div className="relative z-10 text-white">
+            <motion.h2
+              variants={Zoom(0)}
+              initial = 'hidden'
+              whileInView={'show'}
 
-        {/* === Marked Stats (animated gradients + dark glass underlay) === */}
-        <div className='flex flex-col sm:flex-row gap-4 md:gap-8 items-center justify-center mt-10 mb-10 sm:divide-x sm:divide-white/10'>
 
-          {/* Reviews */}
-          <div className="px-0 sm:px-8 text-center stat-card grad-reviews">
-            <div className="relative z-10">
-              <div className='flex gap-2 items-center justify-center'>
-                <h1 className='text-3xl font-bold text-white'>
-                  {/* Count to 4.4 with one decimal */}
-                  <CountUp end={4.4} decimals={1} duration={1200} />
-                </h1>
-                <IoStar className='text-3xl text-yellow-300 drop-shadow' />
-              </div>
-              <p className='mt-1'>
-                <span className='inline-block rounded-full bg-white/10 border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-white/90'>
-                  {/* Count to 19,000 with commas and + */}
-                  <CountUp end={19000} duration={1200} formatter={(v)=>Math.round(v).toLocaleString()} suffix="+ reviews" />
-                </span>
-              </p>
+              className='font-lugrasimo text-4xl sm:text-5xl lg:text-6xl text-center font-bold px-2'>Exclusive Bangla Stories</motion.h2>
+            <motion.p
+            variants={Zoom(.2)}
+            initial = 'hidden'
+            whileInView={'show'}
+
+            className="text-center px-2 tracking-wide mt-6 max-w-5xl mx-auto text-[16px] sm:text-lg md:text-xl leading-relaxed text-white/90">
+              <span className='font-marko-one font-bold'>E-boimela</span> — Your gateway to the finest Bangla eBooks. Explore over 10,000 titles anytime, anywhere. Make every moment better with a book by your side.
+            </motion.p>
+
+            {/* === Marked Stats (animated gradients + dark glass underlay) === */}
+            <div className='flex flex-col sm:flex-row gap-4 md:gap-8 items-center justify-center mt-10 mb-10 sm:divide-x sm:divide-white/10'>
+
+              {/* Reviews */}
+              <motion.div
+                variants={fadeIn('up', .5)}
+                initial='hidden'
+                whileInView={'show'}
+
+                className="px-0 sm:px-8 text-center stat-card grad-reviews">
+                <div className="relative z-10">
+                  <div className='flex gap-2 items-center justify-center'>
+                    <h1 className='text-3xl font-bold text-white'>
+                      {/* Count to 4.4 with one decimal */}
+                      <CountUp end={4.4} decimals={1} duration={1200} />
+                    </h1>
+                    <IoStar className='text-3xl text-yellow-300 drop-shadow' />
+                  </div>
+                  <p className='mt-1'>
+                    <span className='inline-block rounded-full bg-white/10 border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-white/90'>
+                      {/* Count to 19,000 with commas and + */}
+                      <CountUp end={19000} duration={1200} formatter={(v) => Math.round(v).toLocaleString()} suffix="+ reviews" />
+                    </span>
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* User Installs */}
+              <motion.div
+                variants={fadeIn('up', 1)}
+                initial='hidden'
+                whileInView={'show'}
+
+                className="px-0 sm:px-8 text-center stat-card grad-installs">
+                <div className="relative z-10">
+                  <h2 className='text-3xl font-bold text-white'>
+                    {/* Count to 3.5M, show as 3.5M+ */}
+                    <CountUp
+                      end={3500000}
+                      duration={1400}
+                      formatter={(v) => (v / 1_000_000).toFixed(1)}
+                      suffix="M+"
+                    />
+                  </h2>
+                  <p className='mt-1'>
+                    <span className='inline-block rounded-full bg-white/10 border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-white/90'>
+                      User Installs
+                    </span>
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Books */}
+              <motion.div
+                variants={fadeIn('up', 1.15)}
+                initial='hidden'
+                whileInView={'show'}
+                className="px-0 sm:px-8 text-center stat-card grad-books">
+                <div className="relative z-10">
+                  <h1 className='text-3xl font-bold text-white'>
+                    {/* Count to 10,000 with commas and + */}
+                    <CountUp
+                      end={10000}
+                      duration={1400}
+                      formatter={(v) => Math.round(v).toLocaleString()}
+                      suffix="+"
+                    />
+                  </h1>
+                  <p className='mt-1'>
+                    <span className='inline-block rounded-full bg-white/10 border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-white/90'>
+                      Books
+                    </span>
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
 
-          {/* User Installs */}
-          <div className="px-0 sm:px-8 text-center stat-card grad-installs">
-            <div className="relative z-10">
-              <h2 className='text-3xl font-bold text-white'>
-                {/* Count to 3.5M, show as 3.5M+ */}
-                <CountUp
-                  end={3500000}
-                  duration={1400}
-                  formatter={(v)=> (v/1_000_000).toFixed(1)}
-                  suffix="M+"
-                />
-              </h2>
-              <p className='mt-1'>
-                <span className='inline-block rounded-full bg-white/10 border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-white/90'>
-                  User Installs
-                </span>
-              </p>
-            </div>
-          </div>
-
-          {/* Books */}
-          <div className="px-0 sm:px-8 text-center stat-card grad-books">
-            <div className="relative z-10">
-              <h1 className='text-3xl font-bold text-white'>
-                {/* Count to 10,000 with commas and + */}
-                <CountUp
-                  end={10000}
-                  duration={1400}
-                  formatter={(v)=>Math.round(v).toLocaleString()}
-                  suffix="+"
-                />
-              </h1>
-              <p className='mt-1'>
-                <span className='inline-block rounded-full bg-white/10 border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-white/90'>
-                  Books
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Animations */}
-      <style>{`
+          {/* Animations */}
+          <style>{`
         /* existing animations (unchanged) */
         @keyframes slowPan {
           0%   { transform: translate3d(0, 0, 0) scale(1.0); }
@@ -194,7 +221,7 @@ const Banner = () => {
         .grad-books::before { background-image: linear-gradient(135deg,#6D28D9,#A21CAF,#DB2777,#F43F5E); }
         @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
       `}</style>
-    </motion.div>
+        </div>
       </div>
     </div>
   );

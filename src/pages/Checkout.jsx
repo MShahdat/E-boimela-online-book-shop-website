@@ -54,6 +54,7 @@ const Checkout = () => {
     e.preventDefault();
     if (promoCode === 'shahdat' && cart.length >= 1) {
       setPromo(true)
+      toast.success('You got 30% discount!')
       setPromoCode('')
     }
   };

@@ -3,7 +3,8 @@ import BookCard from '../BookCard';
 import {Books} from '../../../public/book.js';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
-
+import {motion} from 'framer-motion';
+import { fadeIn } from '../../motion/motion.js';
 
 const books = Books.filter((book) => book.category === 'নন-ফিকশন' || book.categoryEn === 'Non-Fiction')
 const book = books.slice(0,4)
@@ -12,8 +13,16 @@ const Friction = () => {
   return (
     <div className='bg-red-50 dark:bg-black dark:text-white'>
       <div className='max-w-6xl mx-auto px-4 py-4'>
-      <h3 className='text-2xl sm:text-3xl font-semibold tracking-wide'>Non-Fiction Books</h3>
-      <p className='mt-0.5 pb-2 sm:pb-4 text-black/80 dark:text-white text-[14px] tracking-wider'>নন-ফিকশন বইসমূহ</p>
+      <motion.h3
+      variants={fadeIn('up', 0.15)}
+                initial='hidden'
+                whileInView={'show'}
+      className='text-2xl sm:text-3xl font-semibold tracking-wide'>Non-Fiction Books</motion.h3>
+      <motion.p 
+      variants={fadeIn('up', 0.2)}
+          initial='hidden'
+          whileInView={'show'}
+      className='mt-0.5 pb-2 sm:pb-4 text-black/80 dark:text-white text-[14px] tracking-wider'>নন-ফিকশন বইসমূহ</motion.p>
       <BookCard books = {book}></BookCard>
       {
               book.length >= 4 &&

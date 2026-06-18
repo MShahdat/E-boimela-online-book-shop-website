@@ -11,6 +11,11 @@ import { IoReaderSharp } from "react-icons/io5";
 import { dataContext } from '../context/Context';
 import { toast } from 'react-toastify';
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { motion } from 'framer-motion';
+import { fadeIn, Zoom } from '../motion/motion';
+
+
+
 
 const BooksDetails = () => {
 
@@ -55,13 +60,25 @@ const BooksDetails = () => {
         <div className='flex flex-col lg:flex-row gap-10 xl:gap-4 lg:gap-0 py-6'>
 
           {/* Left Image */}
-          <div className='w-full lg:w-1/3 mx-auto flex justify-center'>
-            <img className='w-72 h-108 object-cover rounded-md' src={book.image} alt={book.title} />
+          <div
+
+            className='w-full lg:w-1/3 mx-auto flex justify-center'>
+            <motion.img
+              variants={Zoom(0)}
+              initial='hidden'
+              whileInView={'show'}
+              viewport={{once: true}}
+              className='w-72 h-108 object-cover rounded-md' src={book.image} alt={book.title} />
           </div>
 
           {/* Right Content */}
           <div className='w-full lg:w-2/3 flex flex-col'>
-            <div className='flex flex-col items-center text-center lg:items-start lg:text-left'>
+            <motion.div
+            variants={fadeIn('up', .2)}
+            initial = 'hidden'
+            whileInView={'show'}
+            viewport={{once: true}}
+            className='flex flex-col items-center text-center lg:items-start lg:text-left'>
               <h1 className='text-xl sm:text-3xl md:text-3xl font-bold dark:text-white text-blue-950'>{book.title}</h1>
               <p className='mt-2 text-sm sm:text-base dark:text-white text-gray-800'>{book.author}</p>
               <div className='flex items-center gap-2 mt-3 font-bold'>
@@ -81,10 +98,15 @@ const BooksDetails = () => {
                   {book.category}
                 </button>
               </Link>
-            </div>
+            </motion.div>
 
             {/* Book Details */}
-            <div className='mt-6 p-6 sm:p-12 bg-gray-100 rounded-lg'>
+            <motion.div
+            variants={Zoom(0)}
+            initial = 'hidden'
+            whileInView={'show'}
+            viewport={{once: true}}
+            className='mt-6 p-6 sm:p-12 bg-gray-100 rounded-lg'>
               <div className='grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center'>
                 <div className='flex flex-col items-center space-y-1'>
                   <FaBookOpen className='text-blue-900' />
@@ -107,10 +129,14 @@ const BooksDetails = () => {
                   <p className='dark:text-black font-bold text-sm text-center'>{book.publisher}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Price and Actions */}
-            <div className='py-8'>
+            <motion.div
+            variants={fadeIn('up', .2)}
+            initial = 'hidden'
+            whileInView={'show'}
+            className='py-8'>
               <div className='flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-4'>
                 <div className=' flex gap-0.5 items-center text-2xl font-bold text-blue-900 dark:text-white'>
                   <TbCurrencyTaka />
@@ -141,7 +167,7 @@ const BooksDetails = () => {
                         toast.success('cart added successfull!');
                       }
                     }}
-                    disabled = {isAdded}
+                      disabled={isAdded}
                       className='border px-4 py-1.5 font-semibold rounded-full bg-black text-white hover:bg-blue-950 cursor-pointer flex gap-2 items-center'
                     >
                       {isAdded ? <IoIosCheckmarkCircle /> : <FaCartShopping />}
@@ -169,7 +195,7 @@ const BooksDetails = () => {
                   {book.about}
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -6,12 +6,21 @@ import { IoLogoYoutube } from "react-icons/io5";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
+import { motion } from 'framer-motion';
+import { fadeIn } from '../motion/motion';
+
+
 const Footer = () => {
   return (
     <div className='bg-[#080419] text-white'>
       <div className='max-w-6xl mx-auto px-4 py-12'>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 space-y-8'>
-          <div className=''>
+          <motion.div
+            variants={fadeIn('up', 0.15)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once: true}}
+            className=''>
             <h2 className='text-3xl font-bold'>E-boimela</h2>
             <p className='mt-4 text-white/70 text-[16px] tracking-wide'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur quia ex atque sunt deleniti distinctio sapiente.</p>
             <div className='mt-4 flex items-center gap-2'>
@@ -28,9 +37,14 @@ const Footer = () => {
                 <IoLogoYoutube className='text-xl' />
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className='tracking-wide'>
+          <motion.div
+            variants={fadeIn('up', 0.25)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once: true}}
+            className='tracking-wide'>
             <h1 className='font-semibold text-xl uppercase'>Quick Links</h1>
             <div className='mt-6 flex flex-col gap-2 text-white/70'>
               <Link to='/recharge-balance' className=''>
@@ -46,9 +60,14 @@ const Footer = () => {
                 Helps & Support
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            variants={fadeIn('up', 0.35)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once: true}}
+          >
             <p className=' text-xl font-semibold uppercase'>Download Our Apps</p>
             <div className='mt-6 flex flex-col gap-4'>
               <Link>
@@ -70,9 +89,14 @@ const Footer = () => {
                 </div>
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            variants={fadeIn('up', 0.45)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once: true}}
+          >
             <h2 className=' text-xl font-semibold uppercase'>Newsletter</h2>
             <p className='mt-4 tracking-wide text-white/70'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, recusandae.</p>
             <form className='mt-6'>
@@ -80,7 +104,7 @@ const Footer = () => {
               <button className='mt-2 text-center py-1.5 w-full bg-orange-600 rounded active:bg-orange-700
                text-white text-[16px] font-medium'>Subscribe</button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
 

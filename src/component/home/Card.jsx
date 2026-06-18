@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookCard from '../BookCard';
 import { Books } from '../../../public/book.js';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
-
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../motion/motion.js';
+import { isFirstVisit } from '../../motion/visit.jsx';
 
 const Card = (props) => {
-  console.log(props.categories);
+  // console.log(props.categories);
   const books = Books.filter((book) => book.categoryEn === props.categories.catEn)
   const book = books.slice(0, 4)
-  console.log(books)
+  // console.log(books)
+
+  const [animate] = useState(() => isFirstVisit('abc'))
 
   return (
     <div className='bg-red-50 dark:bg-black dark:text-white'>
       <div className='max-w-6xl mx-auto px-4 py-4'>
-        <h3 className='text-2xl sm:text-3xl font-semibold tracking-wide'>{props.categories.catEn} Books</h3>
-        <p className='mt-0.5 pb-2 sm:pb-4 text-black/80 dark:text-white text-[14px] tracking-wider'>{props.categories.cat} বইসমূহ</p>
+        <motion.h3
+        variants={animate ?  fadeIn('up', 0.15) : undefined}
+        initial={animate ?  'hidden' : undefined}
+        whileInView={animate ?  'show' : undefined}
+        viewport={{once: true}}
+        className='text-2xl sm:text-3xl font-semibold tracking-wide'>{props.categories.catEn} Books</motion.h3>
+        <motion.p
+        variants={animate ?  fadeIn('up', 0.2) : undefined}
+        initial={animate ?  'hidden' : undefined}
+        whileInView={animate ?  'show' : undefined}
+        viewport={{once: true}}
+        className='mt-0.5 pb-2 sm:pb-4 text-black/80 dark:text-white text-[14px] tracking-wider'>{props.categories.cat} বইসমূহ</motion.p>
         <BookCard books={book}></BookCard>
         {
           book.length >= 4 &&

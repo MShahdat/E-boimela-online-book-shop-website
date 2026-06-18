@@ -3,6 +3,9 @@ import BookCard from '../BookCard.jsx';
 import { Books } from '../../../public/book.js'
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
+import { motion } from 'framer-motion';
+import { Zoom } from '../../motion/motion.js';
+
 
 const GenreBooks = () => {
   const { category } = useParams();
@@ -15,7 +18,12 @@ const GenreBooks = () => {
   return (
     <div className='bg-white dark:bg-black dark:text-white'>
       <div className='max-w-6xl mx-auto px-4 py-8'>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+        <motion.div
+          variants={Zoom(0)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: true}}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
 
           <img
             src={image || 'https://pngimg.com/d/book_PNG2111.png'}
@@ -32,7 +40,7 @@ const GenreBooks = () => {
               {books.length} books
             </p>
           </div>
-        </div>
+        </motion.div>
         <div className="border dark:border-white/30 border-black/5 mb-8"></div>
 
         <h3 className='text-2xl sm:text-3xl font-semibold tracking-wide'>All {category} Books</h3>

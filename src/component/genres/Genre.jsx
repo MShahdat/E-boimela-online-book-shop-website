@@ -1,6 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Books } from '../../../public/book';
 import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion';
+import { fadeIn, Stagger, StaggerChild } from '../../motion/motion';
+import { isFirstVisit } from '../../motion/visit';
+
 
 const Genre = () => {
   const categories = useMemo(() => {
@@ -21,21 +25,43 @@ const Genre = () => {
     return Object.values(map);
   }, [Books])
 
+  const [animate] = useState(() => isFirstVisit('genre'))
+
   return (
     <div className="bg-white dark:bg-black">
       <div className=" py-10 max-w-6xl mx-auto">
         <div className="px-4 mx-auto">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-marko-one text-3xl font-bold text-black dark:text-white mb-2">Genres</h2>
-              <p className="text-lg dark:text-white">
+              <motion.h2
+              variants={animate ?  fadeIn('up', 0.15) : undefined}
+              initial = {animate ?  'hidden' : undefined}
+              whileInView={animate ?  'show' : undefined}
+              viewport={{once: true}}
+              
+              className="font-marko-one text-3xl font-bold text-black dark:text-white mb-2">Genres</motion.h2>
+              <motion.p
+              variants={animate ?  fadeIn('up', 0.2) : undefined}
+              initial = {animate ?  'hidden' : undefined}
+              whileInView={animate ?  'show' : undefined}
+              viewport={{once: true}}
+              className="text-lg dark:text-white">
                 Explore our collection of books across different genres
-              </p>
+              </motion.p>
             </div>
           </div>
-          <div className="mt-6 grid gap-4 space-y-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
+          <motion.div
+          variants={animate ? Stagger : undefined}
+          initial = {animate ? 'hidden' : undefined}
+          whileInView={animate ? 'show' : undefined}
+          viewport={{once: true}}
+
+          className="mt-6 grid gap-4 space-y-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
             {categories.map((genre, idx) => (
-              <Link key={idx}
+              <motion.div
+              variants={StaggerChild}
+              key={idx}>
+                <Link
                 to={`/genres/${genre.nameEn}`}
                 state={{
                   name: genre.name,
@@ -57,8 +83,9 @@ const Genre = () => {
                   </span>
                 </div>
               </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

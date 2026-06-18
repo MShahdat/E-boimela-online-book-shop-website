@@ -17,14 +17,6 @@ const Home = () => {
       <Banner></Banner>
       <New></New>
       <Hom></Hom>
-      {/* <Trending></Trending>
-      <Islamic></Islamic>
-      <Free></Free>
-      <Career></Career>
-      <Friction></Friction>
-      <Thriller></Thriller>
-      <Scientific></Scientific>
-      <Academic></Academic> */}
     </div>
   );
 };

@@ -55,7 +55,7 @@ const Recharge = () => {
                         console.log('clicked')
                         setVideo(true)
                     }}>
-                        <p className='font-bold text-red-600 active:text-red-700 text-base'>
+                        <p className='cursor-pointer font-bold text-red-600 active:text-red-700 text-base'>
                             Learn how to find your account ID
                         </p>
                     </button>

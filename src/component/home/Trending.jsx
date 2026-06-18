@@ -3,6 +3,8 @@ import BookCard from '../BookCard';
 import { Books } from '../../../public/book.js';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../motion/motion.js';
 
 
 const books = Books.filter((book) => book.category === 'ট্রেন্ডিং' || book.categoryEn === 'Trending')
@@ -12,17 +14,29 @@ const Trending = () => {
   return (
     <div className='bg-white dark:bg-black dark:text-white'>
       <div className='max-w-6xl mx-auto px-4 py-4'>
-      <h3 className='text-2xl sm:text-3xl font-semibold tracking-wide'>Trending Books</h3>
-      <p className='mt-0.5 pb-2 sm:pb-4 text-black/80 text-[14px] dark:text-white tracking-wider'>ট্রেন্ডিং বইসমূহ</p>
-      <BookCard books={book}></BookCard>
-      {
-        book.length >= 4 &&
-        <Link className='flex items-center text-orange-600 dark:text-white font-bold gap-2 justify-end'>
-          <p className=''>See more</p>
-          <FaArrowRight className='mt-1' />
-        </Link>
-      }
-    </div>
+        <motion.h3
+          variants={fadeIn('up', 0.15)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: true}}
+
+          className='text-2xl sm:text-3xl font-semibold tracking-wide'>Trending Books</motion.h3>
+        <motion.p
+          variants={fadeIn('up', 0.2)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once: true}}
+
+          className='mt-0.5 pb-2 sm:pb-4 text-black/80 text-[14px] dark:text-white tracking-wider'>ট্রেন্ডিং বইসমূহ</motion.p>
+        <BookCard books={book}></BookCard>
+        {
+          book.length >= 4 &&
+          <Link className='flex items-center text-orange-600 dark:text-white font-bold gap-2 justify-end'>
+            <p className=''>See more</p>
+            <FaArrowRight className='mt-1' />
+          </Link>
+        }
+      </div>
     </div>
   );
 };

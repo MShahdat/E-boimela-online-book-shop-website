@@ -1,6 +1,10 @@
-import React, { useMemo } from 'react';
-import { Books } from '../../../public/book';
+import React, { useMemo, useState } from 'react';
+import { Books } from '../../../public/book.js';
 import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion';
+import { fadeIn, StaggerChild, Stagger } from '../../motion/motion.js';
+import { isFirstVisit } from '../../motion/visit.jsx';
+
 
 const Author = () => {
   const author = useMemo(() => {
@@ -21,21 +25,37 @@ const Author = () => {
     return Object.values(map);
   }, [Books])
 
+  const [animate] = useState(() => isFirstVisit('author'))
   return (
     <div className="bg-white/60 dark:bg-black dark:text-white">
       <div className=" py-10 max-w-6xl mx-auto">
         <div className="px-4 mx-auto">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-marko-one text-3xl font-bold mb-2">Authors</h2>
-              <p className="font-playwrite-grundschrift text-lg mb-6">
+              <motion.h2
+              variants={animate ? fadeIn('up', 0.15) : undefined}
+                            initial = {animate ? 'hidden' : undefined}
+                            whileInView={animate ? 'show' : undefined}
+              className="font-marko-one text-3xl font-bold mb-2">Authors</motion.h2>
+              <motion.p
+              variants={animate ? fadeIn('up', 0.2) : undefined}
+                            initial = {animate ? 'hidden' : undefined}
+                            whileInView={animate ? 'show' : undefined}
+              className="font-playwrite-grundschrift text-lg mb-6">
                 Explore our collection of books across different authors
-              </p>
+              </motion.p>
             </div>
           </div>
-          <div className="grid gap-4 space-y-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
+          <motion.div
+          variants={animate ? Stagger : undefined}
+                    initial = {animate ? 'hidden' : undefined}
+                    whileInView={animate ? 'show' : undefined}
+           className="grid gap-4 space-y-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
             {author.map((author, idx) => (
-              <Link key={idx}
+              <motion.div
+              variants={StaggerChild}
+              key={idx}>
+                <Link
                 to={`/authors/${author.nameEn}`}
                 state={{
                   name: author.name,
@@ -59,8 +79,9 @@ const Author = () => {
 
                 </div>
               </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

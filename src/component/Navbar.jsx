@@ -67,7 +67,7 @@ const Navbar = () => {
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        `flex items-center gap-0.5 text-[18px] font-semibold tracking-[1px] 
+                        `flex items-center gap-0.5 text-[17px] font-semibold tracking-[1px] 
             ${isActive ? 'text-orange-600 font-bold underline' : ''}`
                       }
                     >
@@ -98,7 +98,7 @@ const Navbar = () => {
                   key={idx}
                   to={item.path}
                   className={({ isActive }) =>
-                    `hidden md:block text-[18px] font-semibold tracking-[1px] 
+                    `hidden md:block text-[17px] font-semibold tracking-[1px] 
         ${isActive ? 'text-orange-600 font-bold underline' : ''}`
                   }
                 >
