@@ -26,10 +26,7 @@ const GenreBooks = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
 
           <img
-            src={image || 'https://pngimg.com/d/book_PNG2111.png'}
-            // onError={(e) => {
-            //   e.currentTarget.src = "https://pngimg.com/d/book_PNG2111.png";
-            // }}
+            src={image || 'https://plus.unsplash.com/premium_photo-1669652639356-f5cb1a086976?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
             className="w-36 h-36 md:w-52 md:h-52 object-cover border-4 border-black/20 rounded-full"
           />
 
