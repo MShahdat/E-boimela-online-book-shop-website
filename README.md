@@ -3,7 +3,7 @@
 **E-Boimela** is a complete, modern, and fully responsive **e-library web platform** built with **React.js** and **Tailwind CSS**.  
 It allows users to explore, search, read, and manage books easily across all devices with a smooth and user-friendly experience.
 
-## 🌐 Live Website: https://e-boimela.netlify.app/
+## 🌐 Live Website: https://e-boimela-book-shop.vercel.app/
 
 
 ## 🎯 Project Purpose
